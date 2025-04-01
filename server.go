@@ -7,18 +7,20 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	randomHtml := wordgeneration.GenerateRandomWords(100)
+	var wordsCnt int = 100
 
-	tmpl, err := template.ParseFiles("index.html")
+	randomWords := wordgeneration.GenerateRandomWords(wordsCnt) //Generating some words
+
+	tmpl, err := template.ParseFiles("index.html") //Parsing html file
 	if err != nil {
 		http.Error(w, "Ошибка загрузки шаблона: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	data := struct {
-		RandomText template.HTML
+		RandomText template.HTML //{{.RandomText}}
 	}{
-		RandomText: template.HTML(randomHtml),
+		RandomText: template.HTML(randomWords), //Adding randomWords in html file
 	}
 
 	err = tmpl.Execute(w, data)
@@ -28,7 +30,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	err := wordgeneration.LoadWords("data/words/en/en1.json")
+	err := wordgeneration.LoadWords("data/words/en/en1.json") //Getting words from json file
 	if err != nil {
 		panic("Не удалось загрузить слова: " + err.Error())
 	}

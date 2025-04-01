@@ -5,32 +5,26 @@ let currentCharIndex = 0;
 let chars = [];
 
 function init() {
-    chars = Array.from(textArea.querySelectorAll('.char'));
-    if (chars.length > 0) {
-        caret.style.display = 'block'; // Включаем видимость
+    chars = Array.from(textArea.querySelectorAll('.char'));//Getting all letters
+    if (chars.length) {
+        caret.style.display = 'block'; //Show caret if we have anything
         updateCaretPosition();
     }
-    
-    window.addEventListener('resize', updateCaretPosition);
+    window.addEventListener('resize', updateCaretPosition);//If size of window changes we change position of caret
 }
 
 function updateCaretPosition() {
-    if (currentCharIndex >= chars.length) return;
+    if (currentCharIndex >= chars.length) return;//If array is ended
     
-    const charElement = chars[currentCharIndex];
-    const rect = charElement.getBoundingClientRect();
-    const parentRect = textArea.getBoundingClientRect();
+    const charElement = chars[currentCharIndex];//Current letter
+    const rect = charElement.getBoundingClientRect();//Getting info about current letter
+    const parentRect = textArea.getBoundingClientRect();//Getting info about parent container
     
-    // Позиция в начале символа
-    caret.style.left = `${rect.left - parentRect.left}px`;
-    caret.style.top = `${rect.top - parentRect.top}px`;
-    caret.style.height = `${rect.height}px`;
+    caret.style.left = `${rect.left - parentRect.left}px`;//Setting caret left position
+    caret.style.top = `${rect.top - parentRect.top}px`;//Setting caret top position
 }
 
 hiddenInput.addEventListener('keydown', e => {
-    if (currentCharIndex >= chars.length) return;
-
-    // Обработка Backspace
     if (e.key === 'Backspace') {
         if (currentCharIndex > 0) {
             currentCharIndex--;
@@ -40,18 +34,19 @@ hiddenInput.addEventListener('keydown', e => {
         e.preventDefault();
         return;
     }
-
-    // Фильтрация только букв и пробелов
-    if (!/^[a-zA-Zа-яА-Я ]$/.test(e.key)) {
+    
+    if (currentCharIndex >= chars.length) return;//If array is ended
+    
+    if (!/^[a-zA-Zа-яА-Я ]$/.test(e.key)) { //Only alphabet letters
         e.preventDefault();
         return;
     }
 
-    const currentChar = chars[currentCharIndex];
+    const currentChar = chars[currentCharIndex];//Я устал делать комменты простите
     const expectedChar = currentChar.textContent;
 
     if (e.key === expectedChar) {
-        currentChar.classList.add('correct');
+        currentChar.classList.add('correct');//Adding correct that changes color
     } else {
         currentChar.classList.add('incorrect');
     }
@@ -61,4 +56,4 @@ hiddenInput.addEventListener('keydown', e => {
     e.preventDefault();
 });
 
-document.addEventListener('DOMContentLoaded', init);    
+document.addEventListener('DOMContentLoaded', init);//When all is parsed and executed

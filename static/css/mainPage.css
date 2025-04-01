@@ -95,5 +95,10 @@ body {
     white-space: pre;
 }
 
+.wordContainer {
+    position: relative;
+    display: inline-block;
+}
+
 .correct { color: #2ecc71; }
 .incorrect { color: #e74c3c; }
