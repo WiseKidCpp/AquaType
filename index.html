@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/static/mainPage.css">
+    <link rel="stylesheet" href="/static/css/mainPage.css">
 </head>
 <body>
     <button class="topBar">AquaType</button>
     <div class="textField">
-        <div class="generated-text">
+        <div class="generated-text" tabindex="0" id="textInputArea">
             {{.RandomText}}
+            <div class="caret" id="caret"></div>
         </div>
+        <input type="text" id="hidden-input">
     </div>
+    <script type="module" src="/static/js/focusHandler.js"></script>
+    <script type="module" src="/static/js/inputHandler.js"></script>
 </body>
 </html>

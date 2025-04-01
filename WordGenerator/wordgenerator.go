@@ -30,19 +30,6 @@ func LoadWords(filename string) error {
 }
 
 func GenerateRandomWords(length int) string {
-	if len(words) == 0 {
-		return ""
-	}
-
-	result := ""
-	for i := 0; i < length; i++ {
-		word := words[rand.Intn(len(words))]
-		result += `<span class="word">` + word + `</span> `
-	}
-	return result
-}
-
-func GenerateRandomPhrase(length int) string {
 	rand.NewSource(time.Now().UnixNano())
 	if len(words) == 0 {
 		return ""
@@ -50,7 +37,13 @@ func GenerateRandomPhrase(length int) string {
 
 	result := ""
 	for i := 0; i < length; i++ {
-		result += words[rand.Intn(len(words))] + " "
+		word := words[rand.Intn(len(words))]
+		wrappedWord := ""
+		for _, c := range word {
+			wrappedWord += `<span class="char">` + string(c) + `</span>`
+		}
+		wrappedWord += `<span class="char">` + ` ` + `</span>`
+		result += `<span class="word">` + wrappedWord + `</span><span class="space"></span>`
 	}
 	return result
 }
