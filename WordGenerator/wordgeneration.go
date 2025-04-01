@@ -13,7 +13,6 @@ type WordsData struct {
 
 var words []string
 
-// Загружает слова из JSON-файла
 func LoadWords(filename string) error {
 	file, err := os.ReadFile(filename)
 	if err != nil {
@@ -27,12 +26,24 @@ func LoadWords(filename string) error {
 	}
 
 	words = data.Words
-	rand.NewSource(time.Now().UnixNano())
 	return nil
 }
 
-// Генерирует случайную строку из N слов
+func GenerateRandomWords(length int) string {
+	if len(words) == 0 {
+		return ""
+	}
+
+	result := ""
+	for i := 0; i < length; i++ {
+		word := words[rand.Intn(len(words))]
+		result += `<span class="word">` + word + `</span> `
+	}
+	return result
+}
+
 func GenerateRandomPhrase(length int) string {
+	rand.NewSource(time.Now().UnixNano())
 	if len(words) == 0 {
 		return ""
 	}

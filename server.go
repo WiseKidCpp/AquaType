@@ -1,14 +1,13 @@
 package main
 
 import (
-	wordgeneration "AquaType/wordgenerator" // Замените на реальный путь
+	wordgeneration "AquaType/wordgenerator"
 	"html/template"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	// Генерация случайной фразы
-	randomString := wordgeneration.GenerateRandomPhrase(5)
+	randomHtml := wordgeneration.GenerateRandomWords(10)
 
 	// Загрузка HTML-шаблона
 	tmpl, err := template.ParseFiles("index.html")
@@ -19,9 +18,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	// Данные для шаблона
 	data := struct {
-		RandomText string
+		RandomText template.HTML
 	}{
-		RandomText: randomString,
+		RandomText: template.HTML(randomHtml),
 	}
 
 	// Рендеринг
