@@ -7,12 +7,13 @@ class allData {
     caret = document.getElementById('caret');
     currentCharIndex = 0;
     lastRowCharIndex = 0;
+    preLastRowCharIndex = 0;
     lastErasable = 0;
     currentRow = 1;
     chars = [];
     deleteString() {
         console.log("removing");
-        for (let i = this.lastRowCharIndex-1; i >= 0; i--) {
+        for (let i = this.preLastRowCharIndex-1; i >= 0; i--) {
            this.chars[i].remove();
         }
     }

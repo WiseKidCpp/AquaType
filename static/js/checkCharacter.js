@@ -17,16 +17,7 @@ export function checkCharacter(e, data) {
         return data;
     }
     
-    if (data.currentCharIndex >= data.chars.length) {
-        console.log(`Correct characters:` + window.correctCharacters);
-        console.log(`Incorrect characters:` + window.incorrectCharacters);
-        console.log(`Time:` + window.typingTime);
-        console.log(`CPM:` + calculateCPM());
-        console.log(`Accuracy: ` + calculateAccuracy() + `%`);
-        data.caret.classList.add(`nondisplay`);
-        window.finished = 1;
-        return data;//If array is ended
-    } 
+    if (data.currentCharIndex >= data.chars.length) return data;//If array is ended 
     
     if (!/^[a-zA-Zа-яА-Я ]$/.test(e.key)) { //Only alphabet letters
         e.preventDefault();
@@ -49,8 +40,21 @@ export function checkCharacter(e, data) {
         window.incorrectCharacters++;
     }
     
+    
     data.currentCharIndex++;
     data = updateCaretPosition(data);
+    
+    if(data.currentCharIndex === data.chars.length) {
+        console.log(`Correct characters:` + window.correctCharacters);
+        console.log(`Incorrect characters:` + window.incorrectCharacters);
+        console.log(`Time:` + window.typingTime);
+        console.log(`CPM:` + calculateCPM());
+        console.log(`Accuracy: ` + calculateAccuracy() + `%`);
+        data.caret.classList.add(`nondisplay`);
+        window.finished = 1;
+        return data;
+    }
+    
     e.preventDefault();
     return data;
 }

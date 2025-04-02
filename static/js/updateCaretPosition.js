@@ -18,7 +18,7 @@ export function updateCaretPosition(data) {
         if(caretTop < letterTop) {
             data.caret.classList.add('moveMomentally');
             data.currentRow++;
-            if(data.currentRow >= 3) {
+            if(data.currentRow >= 4) {
                 let lastCharacter = data.chars[data.chars.length-1].getBoundingClientRect();
                 if(parentRect.height<=lastCharacter.top-parentRect.top) {
                     data.lastErasable = data.lastRowCharIndex;
@@ -30,7 +30,9 @@ export function updateCaretPosition(data) {
                     letterLeft = rect.left - parentRect.left;
                 }
             }
+            data.preLastRowCharIndex = data.lastRowCharIndex;
             data.lastRowCharIndex = data.currentCharIndex;
+            console.log(data.lastRowCharIndex);
         }
         else if(caretTop > letterTop) {
             data.caret.classList.add('moveMomentally');

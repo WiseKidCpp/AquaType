@@ -1,5 +1,5 @@
 html {
-    background-color: black;
+    background-color: rgb(0, 7, 49);
     font-size: 16px;
     color: white;
     font-family: "Inter", sans-serif;
@@ -36,7 +36,7 @@ body {
 
 .generated-text {
     user-select: none;
-    height: calc(4 * 1.5em);
+    height: calc(5 * 1.5em);
     overflow: hidden;
     line-height: 1.5em;
     cursor: default;
@@ -98,4 +98,9 @@ body {
     background-color: transparent;
     width: 0;
     height: 0;
+}
+
+.filter {
+    display: flex;
+    background-color: #104570;
 }
