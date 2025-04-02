@@ -7,7 +7,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	var wordsCnt int = 100
+	var wordsCnt int = 50
 
 	randomWords := wordgeneration.GenerateRandomWords(wordsCnt) //Generating some words
 

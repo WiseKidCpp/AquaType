@@ -19,13 +19,16 @@ export function updateCaretPosition(data) {
             data.caret.classList.add('moveMomentally');
             data.currentRow++;
             if(data.currentRow >= 3) {
-                data.lastErasable = data.lastRowCharIndex;
-                data.deleteString();
-                data.currentRow--;
-                rect = charElement.getBoundingClientRect();
-                parentRect = data.textArea.getBoundingClientRect();
-                letterTop = rect.top - parentRect.top;
-                letterLeft = rect.left - parentRect.left;
+                let lastCharacter = data.chars[data.chars.length-1].getBoundingClientRect();
+                if(parentRect.height<=lastCharacter.top-parentRect.top) {
+                    data.lastErasable = data.lastRowCharIndex;
+                    data.deleteString();
+                    data.currentRow--;
+                    rect = charElement.getBoundingClientRect();
+                    parentRect = data.textArea.getBoundingClientRect();
+                    letterTop = rect.top - parentRect.top;
+                    letterLeft = rect.left - parentRect.left;
+                }
             }
             data.lastRowCharIndex = data.currentCharIndex;
         }

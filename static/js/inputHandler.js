@@ -1,4 +1,4 @@
-import { checkLetter } from "./checkLetter.js";
+import { checkCharacter } from "./checkCharacter.js";
 import { updateCaretPosition } from "./updateCaretPosition.js";
 
 class allData {
@@ -30,7 +30,7 @@ function init() {
 }
 
 data.hiddenInput.addEventListener('keydown', e => {        
-    checkLetter(e, data);
+    checkCharacter(e, data);
 });
 
 document.addEventListener('DOMContentLoaded', init);//When everything is parsed and executed
