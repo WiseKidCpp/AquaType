@@ -43,7 +43,7 @@ func GenerateRandomWords(length int) string {
 			wrappedWord += `<span class="char">` + string(c) + `</span>` //Adding word as letters
 		}
 		if i != length-1 { //We arent adding space after last word
-			wrappedWord += `<span class="char">` + ` ` + `</span>` //Adding space after word
+			wrappedWord += `<span class="char" id="space">` + ` ` + `</span>` //Adding space after word
 		}
 		result += `<span class="wordContainer"><span class="word">` + wrappedWord + `</span></span>` //Adding word into container and in result
 	}
