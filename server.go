@@ -11,7 +11,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	randomWords := wordgeneration.GenerateRandomWords(wordsCnt) //Generating some words
 
-	tmpl, err := template.ParseFiles("index.html") //Parsing html file
+	tmpl, err := template.ParseFiles("mainPage.html") //Parsing html file
 	if err != nil {
 		http.Error(w, "Ошибка загрузки шаблона: "+err.Error(), http.StatusInternalServerError)
 		return
