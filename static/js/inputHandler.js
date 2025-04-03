@@ -22,12 +22,19 @@ class allData {
 let data = new allData;
 
 function init() {
+    data.caret.classList.remove('nondisplay');
     data.chars = Array.from(data.textArea.querySelectorAll('.char'));//Getting all letters
     if (data.chars.length) {
         data.caret.style.display = 'block'; //Show caret if we have anything
         data = updateCaretPosition(data);
     }
     window.addEventListener('resize', data = updateCaretPosition(data));//If size of window changes we change position of caret
+}
+
+export function updateData() {
+    console.log("updating data")
+    data = new allData;
+    init();
 }
 
 data.hiddenInput.addEventListener('keydown', e => {        

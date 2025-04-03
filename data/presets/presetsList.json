@@ -1,0 +1,8 @@
+{
+    "presets" : [
+        "english", "russian"
+    ],
+    "presetsPaths" : [
+        "data/presets/en/englishSimple.json", "data/presets/rus/russianSimple.json"
+    ]
+}

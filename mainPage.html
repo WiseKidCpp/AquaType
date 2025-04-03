@@ -2,20 +2,28 @@
 <html>
 <head>
     <link rel="stylesheet" href="/static/css/mainPage.css">
-</head>
-<body>
-    <div class="topBar">AquaType</div>
-    <div class="filter"></div>
-    <div class="textField">
-        <div class="generated-text" tabindex="0" id="textInputArea">
-            {{.RandomText}}
-            <div class="caret" id="caret"></div>
-        </div>
-        <input type="text" id="hidden-input">
-    </div>
     <script type="module" src="/static/js/focusHandler.js"></script>
     <script type="module" src="/static/js/inputHandler.js"></script>
     <script type="module" src="/static/js/runAnimations.js"></script>
     <script type="module" src="/static/js/progressChecker.js"></script>
+    <script type="module" src="/static/js/openPresetsList.js"></script>
+    <script type="module" src="/static/js/sendRequest.js"></script>
+</head>
+<body>
+    <div class="menuWindow" id="presetsListMenu">
+        <div class="text">Choose preset:</div>
+        {{.PresetsList}}
+    </div>
+    <div class="topBar"><div class="text">AquaType</div></div>
+    <div class="filter">
+        <button class="filterButton" id="openPresetsListButton">preset</button>
+    </div>
+    <div class="textField">
+        <div class="generated-text" tabindex="0" id="textInputArea">
+            {{.RandomText}}
+        </div>
+        <div class="caret" id="caret"></div>
+        <input type="text" id="hidden-input">
+    </div>
 </body>
 </html>

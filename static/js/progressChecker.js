@@ -4,6 +4,14 @@ window.correctCharacters = 0;
 window.incorrectCharacters = 0;
 window.finished = 0;
 
+export function updateGlobals() {
+    window.typingTime = 0;
+    window.focusedOnInputArea = false;
+    window.correctCharacters = 0;
+    window.incorrectCharacters = 0;
+    window.finished = 0;
+}
+
 function countSecond() {
     if(window.focusedOnInputArea & !window.finished) {
         window.typingTime+=0.1;
