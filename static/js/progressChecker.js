@@ -1,17 +1,3 @@
-window.typingTime = 0;
-window.focusedOnInputArea = false;
-window.correctCharacters = 0;
-window.incorrectCharacters = 0;
-window.finished = 0;
-
-export function updateGlobals() {
-    window.typingTime = 0;
-    window.focusedOnInputArea = false;
-    window.correctCharacters = 0;
-    window.incorrectCharacters = 0;
-    window.finished = 0;
-}
-
 function countSecond() {
     if(window.focusedOnInputArea & !window.finished) {
         window.typingTime+=0.1;
@@ -26,7 +12,7 @@ export function calculateCPM() {
 
 export function calculateAccuracy() {
     if(window.incorrectCharacters) {
-        return window.correctCharacters/window.incorrectCharacters*100;
+        return window.correctCharacters/(window.incorrectCharacters+window.correctCharacters)*100;
     }
     return 100;
 }

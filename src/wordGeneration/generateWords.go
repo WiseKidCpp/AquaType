@@ -1,4 +1,4 @@
-package generateWord
+package generateWords
 
 import (
 	"encoding/json"
@@ -70,6 +70,28 @@ func GenerateRandomWords(count int) string {
 	result := ""
 	for i := 0; i < count; i++ {
 		word := words[rand.Intn(len(words))] //Getting random word
+		wrappedWord := ""
+		for _, c := range word {
+			wrappedWord += `<span class="char">` + string(c) + `</span>` //Adding word as letters
+		}
+		if i != count-1 { //We arent adding space after last word
+			wrappedWord += `<span class="char" id="space">` + ` ` + `</span>` //Adding space after word
+		}
+		result += `<span class="wordContainer"><span class="word">` + wrappedWord + `</span></span>` //Adding word into container and in result
+	}
+	return result
+}
+
+func GenerateText() string {
+	if len(words) == 0 {
+		return ""
+	}
+
+	count := len(words)
+
+	result := ""
+	for i := 0; i < count; i++ {
+		word := words[i] //Getting random word
 		wrappedWord := ""
 		for _, c := range word {
 			wrappedWord += `<span class="char">` + string(c) + `</span>` //Adding word as letters

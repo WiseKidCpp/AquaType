@@ -1,6 +1,6 @@
 {
     "presets" : [
-        "english", "russian"
+        "english", "russian", "espanol", "cpp", "python", "smth", "kotlin"
     ],
     "presetsPaths" : [
         "data/presets/en/englishSimple.json", "data/presets/rus/russianSimple.json"

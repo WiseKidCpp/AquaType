@@ -1,4 +1,4 @@
-const caret = document.getElementById('caret');
+import { caret } from "./globalVars.js";
 if (caret) {
     setInterval(() => {
         caret.classList.toggle('blink');

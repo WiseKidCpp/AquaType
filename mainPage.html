@@ -6,17 +6,24 @@
     <script type="module" src="/static/js/inputHandler.js"></script>
     <script type="module" src="/static/js/runAnimations.js"></script>
     <script type="module" src="/static/js/progressChecker.js"></script>
-    <script type="module" src="/static/js/openPresetsList.js"></script>
+    <script type="module" src="/static/js/openWindows.js"></script>
     <script type="module" src="/static/js/sendRequest.js"></script>
+    <script type="module" src="/static/js/globalVars.js"></script>
 </head>
 <body>
     <div class="menuWindow" id="presetsListMenu">
         <div class="text">Choose preset:</div>
         {{.PresetsList}}
     </div>
+    <div class="menuWindow" id="typesOfTextListMenu">
+        <div class="text">Choose type:</div>
+        <button class="typesOfTextListButton" id="randomWords">Random words</button>
+        <button class="typesOfTextListButton" id="realText">Real text</button>
+    </div>
     <div class="topBar"><div class="text">AquaType</div></div>
     <div class="filter">
         <button class="filterButton" id="openPresetsListButton">preset</button>
+        <button class="filterButton" id="openTypesOfTextListButton">type of text</button>
     </div>
     <div class="textField">
         <div class="generated-text" tabindex="0" id="textInputArea">

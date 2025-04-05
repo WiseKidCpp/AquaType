@@ -1,11 +1,5 @@
-const textInputArea = document.getElementById('textInputArea');
-const hiddenInput = document.getElementById('hidden-input');
-const caret = document.getElementById('caret');
-const presetsListMenu = document.getElementById("presetsListMenu");
-const openPresetsListButton = document.getElementById("openPresetsListButton");
-
+import { textInputArea, hiddenInput, caret, presetsListMenu, openPresetsListButton, typesOfTextListMenu, openTypesOfTextListButton} from "./globalVars.js";
 textInputArea.addEventListener('click', e => {
-    //e.stopPropagation();//Stopping propagation(распространение)
     hiddenInput.focus();//Focus on input
     caret.style.display = 'block';
     window.focusedOnInputArea = true;
@@ -18,7 +12,13 @@ document.addEventListener('click', e => {
         window.focusedOnInputArea = false;
     }
     if(!presetsListMenu.contains(e.target) & !openPresetsListButton.contains(e.target)) {
+        console.log('close presets list menu');
         window.presetsListOpened = false;
         presetsListMenu.style.display = 'none';
+    }
+    if(!typesOfTextListMenu.contains(e.target) & !openTypesOfTextListButton.contains(e.target)) {
+        console.log('close types of text list menu');
+        window.typesOfTextListOpened = false;
+        typesOfTextListMenu.style.display = 'none';
     }
 });

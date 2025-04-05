@@ -2,7 +2,7 @@ package main
 
 import (
 	presetsList "AquaType/src/requests"
-	generateWord "AquaType/src/wordGeneration"
+	generateWords "AquaType/src/wordGeneration"
 	"encoding/json"
 	"html/template"
 	"net/http"
@@ -11,7 +11,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	var wordsCnt int = 50
 
-	randomWords := generateWord.GenerateRandomWords(wordsCnt) //Generating some words
+	randomWords := generateWords.GenerateRandomWords(wordsCnt) //Generating some words
 	presetsListObj := presetsList.ShowPresetsList()
 
 	tmpl, err := template.ParseFiles("mainPage.html") //Parsing html file
@@ -53,11 +53,11 @@ func getWordsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := generateWord.LoadWords(generateWord.ConvertPath(data.Preset))
+	err := generateWords.LoadWords(generateWords.ConvertPath(data.Preset))
 	if err != nil {
 		panic("Loading words error(request,server.go): " + err.Error())
 	}
-	words := generateWord.GenerateRandomWords(50)
+	words := generateWords.GenerateRandomWords(50)
 
 	response := map[string]interface{}{
 		"words": words,
@@ -67,7 +67,7 @@ func getWordsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	err := generateWord.LoadWords("data/presets/en/englishSimple.json") //Getting default words from json file
+	err := generateWords.LoadWords("data/presets/en/englishSimple.json") //Getting default words from json file
 	if err != nil {
 		panic("Loading words error(server.go): " + err.Error())
 	}
