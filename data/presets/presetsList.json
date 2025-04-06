@@ -4,5 +4,11 @@
     ],
     "presetsPaths" : [
         "data/presets/en/englishSimple.json", "data/presets/rus/russianSimple.json"
-    ]
+    ],
+    "presetsTextsPaths" : [
+        "data/presets/en/englishSimple.json"
+    ],
+    "texts" : [
+        "data/presets/en/texts.json", "data/presets/rus/texts.json"
+    ] 
 }

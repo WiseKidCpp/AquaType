@@ -1,5 +1,5 @@
 import { updateData } from "./inputHandler.js";
-import { updateGlobals, textInputArea } from "./globalVars.js";
+import { updateGlobals, textInputArea, presetsListMenu, typesOfTextListMenu } from "./globalVars.js";
 async function sendRequest(element) {
   if(element.classList.contains('presetsListButton')) {
     console.log("sending data(preset)");
@@ -44,7 +44,7 @@ async function sendRequest(element) {
       if (!response.ok) throw new Error('Request error(sendRequest.js)');
       const responseData = await response.json();
         
-      window.currentPreset = element.id;
+      window.currentTypeOfText = element.id;
       textInputArea.innerHTML = responseData.words;
       updateGlobals();
       updateData();
@@ -61,8 +61,8 @@ document.addEventListener('click', e => {
     if (clickedElement) {
         sendRequest(clickedElement);
         window.presetsListOpened = false;
-        presetsListMenu = document.getElementById('presetsListMenu');
-        presetsListMenu.style.display = 'none';
+        let _presetsListMenu = presetsListMenu;
+        _presetsListMenu.style.display = 'none';
     }
   }
   if (e.target.classList.contains('typesOfTextListButton')) {
@@ -70,8 +70,8 @@ document.addEventListener('click', e => {
     if (clickedElement) {
         sendRequest(clickedElement);
         window.typesOfTextListOpend = false;
-        presetsListMenu = document.getElementById('typesOfTextListButton');
-        presetsListMenu.style.display = 'none';
+        let _typesOfTextListMenu = typesOfTextListMenu;
+        _typesOfTextListMenu.style.display = 'none';
     }
   }
 });

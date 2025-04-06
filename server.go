@@ -11,7 +11,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	var wordsCnt int = 50
 
-	randomWords := generateWords.GenerateRandomWords(wordsCnt) //Generating some words
+	randomWords := generateWords.GenerateText(wordsCnt, "randomWords") //Generating some words
 	presetsListObj := presetsList.ShowPresetsList()
 
 	tmpl, err := template.ParseFiles("mainPage.html") //Parsing html file
@@ -35,7 +35,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 type RequestData struct {
-	Preset string `json:"preset"`
+	Preset string `json:"Preset"`
+	Type   string `json:"Type"`
 }
 
 func getWordsHandler(w http.ResponseWriter, r *http.Request) {
@@ -53,11 +54,12 @@ func getWordsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := generateWords.LoadWords(generateWords.ConvertPath(data.Preset))
+	err := generateWords.LoadWords(generateWords.ConvertPath(data.Preset, data.Type), data.Type)
 	if err != nil {
 		panic("Loading words error(request,server.go): " + err.Error())
 	}
-	words := generateWords.GenerateRandomWords(50)
+
+	words := generateWords.GenerateText(50, data.Type)
 
 	response := map[string]interface{}{
 		"words": words,
@@ -67,7 +69,7 @@ func getWordsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	err := generateWords.LoadWords("data/presets/en/englishSimple.json") //Getting default words from json file
+	err := generateWords.LoadWords("data/presets/en/englishSimple.json", "randomWords") //Getting default words from json file
 	if err != nil {
 		panic("Loading words error(server.go): " + err.Error())
 	}
